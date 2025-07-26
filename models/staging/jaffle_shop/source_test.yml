@@ -1,0 +1,30 @@
+version: 2
+
+sources:
+  - name: jaffle_shop
+    description: db was clones for dbt labs but this is done in snowflake 
+    database: raw
+    schema: jaffle_shop
+    tables:
+      - name: customers
+        description: uni cut per row its raw and this dim table
+        columns:
+          - name: id
+            tests:
+              - unique
+              - not_null
+
+      - name: orders
+        description: raw order 
+        loaded_at_field: _etl_loaded_at
+        freshness:
+          warn_after: {count: 6, period: hour}
+          error_after: {count: 12, period: hour}
+        columns:
+          - name: id
+            description : primary_key
+            tests:
+              - unique
+              - not_null
+  
+

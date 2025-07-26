@@ -1,0 +1,20 @@
+# version: 2
+
+# sources:
+#   - name: jaffle_shop
+#     database: raw          # 👈 ADD THIS LINE
+#     schema: jaffle_shop   #dbt if not will align its own schemas
+#     freshness:
+#           warn_after: {count: 90, period: hour}
+#           error_after: {count: 90, period: hour}
+#     loaded_at_field: _etl_loaded_at
+#     tables:
+#       - name: customers
+#         freshness: null
+#       - name: orders           # ✅ includes freshness check
+        
+#   - name: stripe
+#     database: raw          # 👈 ADD THIS LINE TOO
+#     schema: stripe
+#     tables:
+#       - name: payment
